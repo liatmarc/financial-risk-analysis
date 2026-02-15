@@ -1,12 +1,12 @@
-Financial Risk Analysis — Credit Default Modeling
+# Financial Risk Analysis — Credit Default Modeling
 
 Production-style machine learning pipeline to predict borrower default risk using the Give Me Some Credit dataset (250,000 borrowers).
 
-Objective
+## Objective
 
 Estimate the probability of financial distress within two years and translate predictions into actionable lending risk tiers.
 
-Approach
+## Approach
 
 Logistic Regression (interpretable baseline)
 
@@ -18,7 +18,7 @@ AUC: 0.827
 
 Class imbalance addressed via class weighting and systematic threshold tuning.
 
-Business-Oriented Threshold Selection
+## Business-Oriented Threshold Selection
 
 At the default 0.5 cutoff, recall for defaulters was low due to imbalance.
 
@@ -32,7 +32,7 @@ Maintained controlled false positives
 
 This demonstrates how classification thresholds directly impact financial tradeoffs between credit losses and rejected revenue opportunities.
 
-Tech Stack
+## Tech Stack
 
 Python · pandas · scikit-learn · statsmodels · modular package structure
 
