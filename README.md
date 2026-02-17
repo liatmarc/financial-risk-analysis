@@ -1,19 +1,31 @@
+<<<<<<< HEAD
 # Insurance Loss Modeling Using a Frequency--Severity Framework
+=======
+#  Financial Risk Analysis — Credit Default Modeling
+>>>>>>> 8e383244418fd83671aac8a61c1a5db2cda98a30
 
 ## Executive Summary
 
+<<<<<<< HEAD
 This project implements an actuarially consistent insurance loss
 modeling pipeline inspired by the French Motor Third-Party Liability
 dataset.
+=======
+## 🚀 Objective
+>>>>>>> 8e383244418fd83671aac8a61c1a5db2cda98a30
 
 Rather than directly predicting loss ratio (which is highly volatile at
 the individual policy level), the modeling framework decomposes risk
 into:
 
+<<<<<<< HEAD
 -   **Frequency modeling** (Poisson GLM and XGBoost)
 -   **Severity modeling** (Gamma-style GLM and XGBoost)
 -   **Expected Loss = Frequency × Severity**
 -   Portfolio-level evaluation using **cumulative lift analysis**
+=======
+## 🧪 Approach
+>>>>>>> 8e383244418fd83671aac8a61c1a5db2cda98a30
 
 This mirrors real-world actuarial pricing and underwriting workflows.
 
@@ -21,6 +33,7 @@ This mirrors real-world actuarial pricing and underwriting workflows.
 
 ## Modeling Framework
 
+<<<<<<< HEAD
 ### 1. Frequency Model
 
 -   Target: Claim Count
@@ -28,6 +41,15 @@ This mirrors real-world actuarial pricing and underwriting workflows.
 -   Exposure handled appropriately in modeling
 -   Result: Modest but realistic predictive signal consistent with motor
     insurance data
+=======
+## 🔍 Business-Oriented Threshold Selection
+
+At the default 0.5 cutoff, recall for defaulters was low due to imbalance.
+A threshold sweep identified 0.25 as a balanced decision point:
+Increased recall for defaulters from ~13% to >30%.  
+Nearly tripled high-risk borrower detection.   
+Maintained controlled false positives.   
+>>>>>>> 8e383244418fd83671aac8a61c1a5db2cda98a30
 
 ### 2. Severity Model
 
@@ -35,6 +57,7 @@ This mirrors real-world actuarial pricing and underwriting workflows.
 -   Model types: Gamma-style Tweedie GLM and log-scale XGBoost
 -   Accounts for heavy-tailed loss distributions
 
+<<<<<<< HEAD
 ### 3. Combined Expected Loss
 
 Expected Loss is computed as:
@@ -45,6 +68,21 @@ This allows stable risk ranking without denominator volatility
 introduced by loss ratios.
 
 ------------------------------------------------------------------------
+=======
+## Run
+
+```
+pip install -r requirements.txt
+python run_pipeline.py
+
+```
+Dataset expected at:
+
+```
+data/raw/cs-training.csv
+
+```
+>>>>>>> 8e383244418fd83671aac8a61c1a5db2cda98a30
 
 ## Portfolio Evaluation
 
