@@ -1,41 +1,97 @@
-# Financial Risk Analysis — Credit Default Modeling
+# Insurance Loss Modeling Using a Frequency--Severity Framework
 
-Production-style machine learning pipeline to predict borrower default risk using the Give Me Some Credit dataset (250,000 borrowers).
+## Executive Summary
 
-## Objective
+This project implements an actuarially consistent insurance loss
+modeling pipeline inspired by the French Motor Third-Party Liability
+dataset.
 
-Estimate the probability of financial distress within two years and translate predictions into actionable lending risk tiers.
+Rather than directly predicting loss ratio (which is highly volatile at
+the individual policy level), the modeling framework decomposes risk
+into:
 
-## Approach
+-   **Frequency modeling** (Poisson GLM and XGBoost)
+-   **Severity modeling** (Gamma-style GLM and XGBoost)
+-   **Expected Loss = Frequency × Severity**
+-   Portfolio-level evaluation using **cumulative lift analysis**
 
-Logistic Regression (interpretable baseline)
-AUC: 0.791
+This mirrors real-world actuarial pricing and underwriting workflows.
 
-Random Forest (nonlinear modeling)
-AUC: 0.827
+------------------------------------------------------------------------
 
-Class imbalance addressed via class weighting and systematic threshold tuning.
+## Modeling Framework
 
-## Business-Oriented Threshold Selection
+### 1. Frequency Model
 
-At the default 0.5 cutoff, recall for defaulters was low due to imbalance.
-A threshold sweep identified 0.25 as a balanced decision point:
-Increased recall for defaulters from ~13% to >30%
-Nearly tripled high-risk borrower detection
-Maintained controlled false positives
+-   Target: Claim Count
+-   Model types: Poisson GLM (baseline) and XGBoost (Poisson objective)
+-   Exposure handled appropriately in modeling
+-   Result: Modest but realistic predictive signal consistent with motor
+    insurance data
 
-This demonstrates how classification thresholds directly impact financial tradeoffs between credit losses and rejected revenue opportunities.
+### 2. Severity Model
 
-## Tech Stack
-Python · pandas · scikit-learn · statsmodels · modular package structure
+-   Target: Claim Amount per Claim (conditional on claim occurrence)
+-   Model types: Gamma-style Tweedie GLM and log-scale XGBoost
+-   Accounts for heavy-tailed loss distributions
 
-Run
+### 3. Combined Expected Loss
 
-pip install -r requirements.txt
-python run_pipeline.py
+Expected Loss is computed as:
 
-Dataset expected at:
+    Expected Loss = E[Frequency] × E[Severity]
 
-data/raw/cs-training.csv
+This allows stable risk ranking without denominator volatility
+introduced by loss ratios.
 
+------------------------------------------------------------------------
 
+## Portfolio Evaluation
+
+Rather than focusing on policy-level R² (which is unstable for loss
+ratio modeling), performance is evaluated using:
+
+-   Cumulative Lift Curves
+-   Portfolio Selection Analysis
+-   Underwriting Segmentation Impact
+
+Key Insight: Ranking policies by expected loss produces meaningful
+portfolio stratification. Lower predicted risk segments contain
+materially less than proportional realized loss.
+
+------------------------------------------------------------------------
+
+## Lessons Learned
+
+-   Loss ratio is highly volatile at the policy level.
+-   Leakage can easily produce artificially high R² if claims or
+    premium-derived fields are included as features.
+-   Proper actuarial decomposition (frequency + severity) produces more
+    realistic and defensible results.
+-   Portfolio lift is more informative than individual-level regression
+    metrics in underwriting applications.
+
+------------------------------------------------------------------------
+
+## Business Framing
+
+This project demonstrates how machine learning can be applied
+responsibly within insurance modeling by:
+
+-   Respecting actuarial structure
+-   Avoiding data leakage
+-   Handling exposure correctly
+-   Benchmarking GLM vs gradient boosting
+-   Evaluating performance through underwriting impact rather than raw
+    regression accuracy
+
+------------------------------------------------------------------------
+
+## 30-Second Interview Summary
+
+"I built a frequency--severity insurance modeling pipeline instead of
+directly predicting loss ratio, because policy-level loss ratios are
+inherently volatile. By modeling frequency and severity separately and
+evaluating performance using cumulative lift, the framework demonstrates
+measurable underwriting segmentation aligned with real actuarial
+practice."
