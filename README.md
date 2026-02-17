@@ -40,7 +40,7 @@ Because the dataset is imbalanced, the default 0.5 classification threshold resu
 A systematic threshold sweep was performed.  
 Selected cutoff: 0.25
 
-Impact:
+## 🔍 Impact:
 
 Recall for defaulters increased from 12.7% → over 30%.   
 Tripled high-risk detection relative to default threshold  
@@ -55,24 +55,31 @@ Random Forest	0.827
 
 Threshold tuning significantly improved practical default detection performance.
 
-🚀 How to Run
+## 🚀 How to Run
 
-Install dependencies:
-...
+Install dependencies: 
+
+```
 pip install -r requirements.txt
-...
 
-Place dataset in:
+```
 
+Place dataset in:  
+
+```
 data/raw/cs-training.csv
 
+```
 
-Run:
 
+Run:  
+
+```
 python run_pipeline.py
 
+```
 
-Outputs:
+## 🧪 Outputs:
 
 Model evaluation metrics  
 Risk scores CSV files   
@@ -88,7 +95,7 @@ Threshold tuning aligned with business objectives
 Model comparison (interpretable vs ensemble)  
 Translation of ML outputs into lending risk decisions
 
-🔮 Potential Extensions
+## 🔮 Potential Extensions
 
 Cost-sensitive optimization   
 Probability calibration  
