@@ -29,13 +29,17 @@ This demonstrates how classification thresholds directly impact financial tradeo
 ## Tech Stack
 Python · pandas · scikit-learn · statsmodels · modular package structure
 
-Run
+## Run
 
+```
 pip install -r requirements.txt
 python run_pipeline.py
 
+```
 Dataset expected at:
 
+```
 data/raw/cs-training.csv
 
+```
 
