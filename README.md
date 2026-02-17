@@ -12,12 +12,13 @@ Accurate risk prediction reduces loan losses while maintaining access to credit.
 This project focuses not only on predictive performance but also on business-aligned decision thresholds in an imbalanced dataset.
 
 ## 🏗 Project Structure
-Financial_Risk_Analysis/
-├── src/                # Modular ML pipeline
-├── data/               # Raw and processed data (not committed)
-├── output/             # Generated predictions (not committed)
-├── run_pipeline.py     # End-to-end execution
-├── requirements.txt
+Financial_Risk_Analysis/  
+
+├── src/                # Modular ML pipeline  
+├── data/               # Raw and processed data (not committed)   
+├── output/             # Generated predictions (not committed)   
+├── run_pipeline.py     # End-to-end execution   
+├── requirements.txt  
 └── README.md
 
 ## 🔬 Modeling Approach
@@ -57,9 +58,9 @@ Threshold tuning significantly improved practical default detection performance.
 🚀 How to Run
 
 Install dependencies:
-,,,
+...
 pip install -r requirements.txt
-,,,
+...
 
 Place dataset in:
 
