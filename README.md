@@ -20,9 +20,9 @@ Class imbalance addressed via class weighting and systematic threshold tuning.
 
 At the default 0.5 cutoff, recall for defaulters was low due to imbalance.
 A threshold sweep identified 0.25 as a balanced decision point:
-Increased recall for defaulters from ~13% to >30%
-Nearly tripled high-risk borrower detection
-Maintained controlled false positives
+Increased recall for defaulters from ~13% to >30%.  
+Nearly tripled high-risk borrower detection.   
+Maintained controlled false positives.   
 
 This demonstrates how classification thresholds directly impact financial tradeoffs between credit losses and rejected revenue opportunities.
 
